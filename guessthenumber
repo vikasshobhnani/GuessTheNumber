@@ -1,0 +1,43 @@
+import random
+
+def comp_choice():
+    number = random.randrange(1,100)
+    print(" \nComputer has chosen the number ")
+    return number
+
+def get_number_and_check():
+    guess = 0
+    while guess not in range(1,101):
+        guess = int(input("Guess the number (1-100): "))
+    return guess
+
+def replay():
+    choice = input("Want to play again (yes or no) : ")
+    return choice == 'yes' or choice == 'yes '
+
+game_on = True
+
+while game_on:
+    print(" ****** Welcome To The Game 'GUESS THE NUMBER'******")
+    comp_numb = comp_choice()
+    print("You will get 6 chances to guess the number ")
+    guesses = 6
+    while guesses>=1 and guesses<=6:
+        your_numb = get_number_and_check()
+        if your_numb == comp_numb:
+            print("you guessed it right, YOU WON")
+            break
+        elif your_numb > comp_numb:
+            print(" Your number is HIGH from the computer number")
+            guesses-=1
+        elif your_numb < comp_numb:
+            print(" Your number is LOW from the computer number")
+            guesses-=1
+
+    if guesses == 0:
+        print("You are out of guesses")
+
+    print('Right answer is ',comp_numb)
+
+    if not replay():
+        break
